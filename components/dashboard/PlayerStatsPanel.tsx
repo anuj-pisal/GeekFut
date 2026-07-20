@@ -67,23 +67,23 @@ export function PlayerStatsPanel({ raw }: Props) {
             max={100}
           />
           
-          {raw.instituteRank && (
-            <div className="py-4 border-b border-white/5">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">Club Rank</span>
-                <span className="text-white font-display font-bold text-lg">#{raw.instituteRank}</span>
-              </div>
+          <div className="py-4 border-b border-white/5 group hover:bg-white/[0.02] transition-colors -mx-4 px-4 rounded-lg">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-400 text-sm">Club Rank</span>
+              <span className="text-white font-display font-bold text-lg">
+                {raw.instituteRank && raw.instituteRank !== 'null' ? `#${raw.instituteRank}` : 'N/A'}
+              </span>
             </div>
-          )}
+          </div>
 
-          {raw.institution && (
-            <div className="py-4 border-b border-white/5">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400 text-sm">Club</span>
-                <span className="text-white font-display font-bold text-lg truncate max-w-[200px] text-right" title={raw.institution}>{raw.institution}</span>
-              </div>
+          <div className="py-4 border-b border-white/5 group hover:bg-white/[0.02] transition-colors -mx-4 px-4 rounded-lg">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-400 text-sm">Club</span>
+              <span className="text-white font-display font-bold text-lg truncate max-w-[200px] text-right" title={raw.institution || 'N/A'}>
+                {(raw.institution && !raw.institution.toLowerCase().includes('null')) ? raw.institution.replace(/^,\s*|\s*,$/g, '').trim() : 'N/A'}
+              </span>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

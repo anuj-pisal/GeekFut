@@ -45,9 +45,16 @@ export const gfgStatsDirectScraperProvider: GfgProvider = {
       profilePicture = null;
     }
     
-    const nameMatch = html.match(/<title>(.*?)\s*-/);
-    const displayName = nameMatch ? nameMatch[1].trim() : username;
-
+    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+    let displayName = username;
+    if (titleMatch) {
+      // Safely extract just the name before any separator
+      let rawTitle = titleMatch[1];
+      rawTitle = rawTitle.split('|')[0].split('-')[0].trim();
+      if (rawTitle) {
+        displayName = rawTitle;
+      }
+    }
     if (!scoreMatch) {
       throw new Error('profile_not_found');
     }

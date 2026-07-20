@@ -4,7 +4,7 @@ import { computeCardModel } from '@/lib/rating';
 import { PlayerCard } from './PlayerCard';
 import { getCache, setCache } from '@/lib/cache';
 
-const HERO_USERS = ['speedcuberayush', 'dewansh01', 'anujpi5cgn', 'sumitpardhiya3'];
+const HERO_USERS = ['speedcuberayush', 'dewansh01', 'anujpi5cgn', 'codewithghtqh8'];
 
 async function getHeroProfile(username: string) {
   const cacheKey = `hero_profile:${username}`;

@@ -7,6 +7,7 @@ import { PlayerCard } from '@/components/PlayerCard';
 import { PlayerHeader } from '@/components/dashboard/PlayerHeader';
 import { PlayerAttributesPanel } from '@/components/dashboard/PlayerAttributesPanel';
 import { PlayerStatsPanel } from '@/components/dashboard/PlayerStatsPanel';
+import { PlayerDistributionGraph } from '@/components/dashboard/PlayerDistributionGraph';
 import { DownloadButton } from '@/components/DownloadButton';
 import { ShareButton } from '@/components/ShareButton';
 import prisma from '@/lib/db';
@@ -47,9 +48,14 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
         data: { viewCount: { increment: 1 } }
       }).catch(console.error);
 
+      // Sanitize displayName in case the database cached a broken HTML string from previous bugs
+      const safeDisplayName = dbPlayer.displayName
+        ? dbPlayer.displayName.replace(/<[^>]*>?/gm, '').split('|')[0].split('-')[0].trim().substring(0, 30)
+        : dbPlayer.username;
+
       profileData = {
         username: dbPlayer.username,
-        displayName: dbPlayer.displayName,
+        displayName: safeDisplayName,
         institution: dbPlayer.institution,
         language: dbPlayer.language,
         profilePicture: dbPlayer.profilePicture,
@@ -232,6 +238,15 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
           </div>
           
         </div>
+
+        {/* Bottom Section: Distribution Graph */}
+        <div className="w-full mt-8 flex justify-center">
+          <PlayerDistributionGraph 
+            username={profileData.username} 
+            ovr={profileData.card.ovr} 
+          />
+        </div>
+
       </div>
     </main>
   );
