@@ -15,7 +15,7 @@ export async function GET() {
     });
     
     // Format the response as an array of { ovr, count }
-    const formattedDistribution = distribution.map(d => ({
+    const formattedDistribution = distribution.map((d: { ovr: number; _count: { username: number } }) => ({
       ovr: d.ovr,
       count: d._count.username
     }));
