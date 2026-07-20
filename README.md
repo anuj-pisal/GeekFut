@@ -5,6 +5,16 @@
   <p><strong>Turn your GeeksforGeeks profile into an EA Sports FC / Ultimate Team style player card!</strong></p>
 
   <p>
+    <a href="https://geek-fut-theta.vercel.app/"><img src="https://img.shields.io/badge/Live_Demo-geek--fut.vercel.app-10b981?style=for-the-badge&logo=vercel" alt="Live Demo" /></a>
+  </p>
+
+  <p>
+    <img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/Supabase-Database-3ecf8e?style=flat-square&logo=supabase" alt="Supabase" />
+    <img src="https://img.shields.io/badge/Prisma-ORM-2d3748?style=flat-square&logo=prisma" alt="Prisma" />
+  </p>
+
+  <p>
     <a href="#what-it-does">What it does</a> •
     <a href="#how-the-ratings-work">How Ratings Work</a> •
     <a href="#tech-stack">Tech Stack</a> •
