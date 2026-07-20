@@ -24,7 +24,7 @@ export const gfgStatsDirectScraperProvider: GfgProvider = {
     const problemsMatch = html.match(/(?:\\")?total_problems_solved(?:\\")?\s*:\s*(\d+)/);
     const rankMatch = html.match(/(?:\\")?institute_rank(?:\\")?\s*:\s*(\d+)/);
     const maxStreakMatch = html.match(/(?:\\")?pod_solved_longest_streak(?:\\")?\s*:\s*(\d+)/);
-    const currentStreakMatch = html.match(/(?:\\")?pod_solved_global_longest_streak(?:\\")?\s*:\s*(\d+)/) || html.match(/(?:\\")?pod_solved_current_streak(?:\\")?\s*:\s*(\d+)/) || html.match(/(?:\\")?current_streak(?:\\")?\s*:\s*(\d+)/) || [null, '0'];
+    const currentStreakMatch = html.match(/(?:\\")?pod_solved_current_streak(?:\\")?\s*:\s*(\d+)/) || html.match(/(?:\\")?current_streak(?:\\")?\s*:\s*(\d+)/) || [null, '0'];
     
     // Attempt to extract the true user's profile picture URL from the RSC payload
     const userDataMatch = html.match(/\\"userData\\".*?\\"profile_image_url\\"\s*:\s*\\"(.*?)\\"/);
@@ -57,12 +57,17 @@ export const gfgStatsDirectScraperProvider: GfgProvider = {
     const hash = username.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
     const assignedLanguage = languages[hash % languages.length];
 
+    // Attempt to extract institution/organization
+    const instMatch = html.match(/(?:\\")?institute_name(?:\\")?\s*:\s*(?:\\")?([^"\\]+)(?:\\")?/i) ||
+                      html.match(/(?:\\")?organization_name(?:\\")?\s*:\s*(?:\\")?([^"\\]+)(?:\\")?/i);
+    const institution = instMatch ? instMatch[1] : null;
+
     return {
       username,
       displayName,
-      institution: null,
+      institution: institution,
       language: assignedLanguage,
-      profilePicture, 
+      profilePicture: profilePicture || 'https://media.geeksforgeeks.org/img-practice/user_web-1598433228.svg',
       codingScore: parseInt(scoreMatch[1], 10),
       totalProblemsSolved: problemsMatch ? parseInt(problemsMatch[1], 10) : 0,
       currentStreak: parseInt(currentStreakMatch[1] || '0', 10),

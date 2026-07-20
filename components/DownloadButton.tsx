@@ -35,7 +35,7 @@ export function DownloadButton() {
     <button
       onClick={handleDownload}
       disabled={downloading}
-      className="mt-12 px-8 py-3 bg-gfg-green text-white font-display uppercase tracking-widest hover:bg-gfg-green-dark transition-all shadow-lg hover:shadow-gfg-green/50 hover:-translate-y-1 disabled:opacity-50 disabled:hover:translate-y-0 rounded"
+      className="w-full py-4 bg-gfg-green text-white font-display font-bold uppercase tracking-widest hover:bg-gfg-green-dark transition-all disabled:opacity-50 rounded-b-2xl shadow-[0_0_15px_rgba(46,204,113,0.2)]"
     >
       {downloading ? 'Rendering...' : 'Download PNG'}
     </button>

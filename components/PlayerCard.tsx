@@ -39,7 +39,7 @@ export function PlayerCard({ model, displayName, institution, profilePicture, co
   let ink = '#3b3117';
   let avatarHalo = 'rgba(0,0,0,0)';
   
-  if (tier === 'icon') { bg = '/cards/legend.png'; ink = '#eaddb9'; avatarHalo = 'rgba(234, 221, 185, 0.2)'; }
+  if (tier === 'icon') { bg = '/cards/legend.png'; ink = '#111111'; avatarHalo = 'rgba(234, 221, 185, 0.2)'; }
   else if (tier === 'gold') { bg = '/cards/gold.png'; ink = '#3b3117'; }
   else if (tier === 'silver') { bg = '/cards/silver.png'; ink = '#1a1f22'; }
   else if (tier === 'bronze') { bg = '/cards/bronze.png'; ink = '#3b3117'; }
