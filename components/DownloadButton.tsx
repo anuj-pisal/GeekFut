@@ -86,13 +86,14 @@ export function DownloadButton({ model, displayName, institution, profilePicture
       
       {/* Hidden Story Container for html-to-image */}
       {mounted && model && createPortal(
-        <div 
-          id="story-format-container" 
-          className="fixed top-0 -left-[9999px] w-[540px] h-[960px] flex flex-col items-center justify-between pointer-events-none bg-[#0a0f0d] overflow-hidden py-16"
-          style={{
-             backgroundImage: 'radial-gradient(circle at center, rgba(46,204,113,0.15) 0%, #0a0f0d 60%)'
-          }}
-        >
+        <div className="fixed top-0 left-0 w-0 h-0 overflow-hidden z-[-1] pointer-events-none">
+          <div 
+            id="story-format-container" 
+            className="w-[540px] h-[960px] flex flex-col items-center justify-between bg-[#0a0f0d] overflow-hidden py-16"
+            style={{
+               backgroundImage: 'radial-gradient(circle at center, rgba(46,204,113,0.15) 0%, #0a0f0d 60%)'
+            }}
+          >
           {/* Top Text */}
           <div className="flex flex-col items-center text-center z-10 pt-4">
             <h1 className="text-5xl font-display font-bold uppercase tracking-tight">
@@ -124,6 +125,7 @@ export function DownloadButton({ model, displayName, institution, profilePicture
               Try your card on geekfut.vercel.app <span className="text-xl">→</span>
             </div>
           </div>
+        </div>
         </div>,
         document.body
       )}
