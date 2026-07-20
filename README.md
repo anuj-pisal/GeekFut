@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="public/newLogo.png" width="360" alt="GFGFUT">
+<img src="public/newLogo.png" width="360" alt="GeekFut">
 
-# GFGFUT
+# GeekFut
 
 **your GeeksforGeeks profile, rated out of 99** ⚽
 
@@ -14,28 +14,24 @@
 
 <br/>
 
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-Database-3ecf8e?style=flat-square&logo=supabase&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind-4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)
-
 </div>
 
 <br/>
 
-> **Disclaimer:** GFGFUT is a fan-made, unofficial open-source project. It is not affiliated with GeeksforGeeks, EA Sports, or FIFA. Ratings are a heuristic calculation derived from public profile stats.
+> **Disclaimer:** GeekFut is a fan-made, unofficial open-source project. It is not affiliated with GeeksforGeeks, EA Sports, or FIFA. Ratings are a heuristic calculation derived from public profile stats.
 
 ## ⚽ &nbsp;What it does
 
-Drop in any valid GeeksforGeeks username and GFGFUT scouts the public profile, reads six real coding signals, and prints a **FIFA-Ultimate-Team-style player card** rated out of 99. Position, tier, stats and all. No manual input, no self-reporting. Just pure coding stats mapped to the pitch.
+Drop in any valid GeeksforGeeks username and GeekFut scouts the public profile, reads six real coding signals, and prints a **FIFA-Ultimate-Team-style player card** rated out of **99**. Position, tier, stats and all. No manual input, no self-reporting. Just pure coding stats mapped to the pitch.
 
-| | |
-|:--|:--|
-| 🃏 **Player card** | Your GeeksforGeeks profile transforms into a sleek, rated-out-of-99 3D interactive card. |
-| 📈 **Live scouting** | Stats are fetched live from public GFG data — including your coding score, streaks, problems solved, and institute rank. |
-| 🥇 **Tiers** | Bronze → Silver → Gold → Icon. Your tier is dictated by your overall consistency and mastery. |
-| ⚔️ **Positions** | Whether you're a Striker, Winger, Playmaker, or Defender, the algorithm automatically determines your optimal position based on your stat distribution. |
-| 🖼️ **Downloadable** | Export your player card as a high-quality PNG to share with your friends or your college crew. |
+| Feature | Description |
+| :------ | :---------- |
+| 🃏 **Player Card** | Transform your GeeksforGeeks profile into a sleek, interactive FIFA Ultimate Team–style player card rated out of **99**. |
+| 📈 **Live Scouting** | Fetches live public GeeksforGeeks data including Coding Score, Current & Max Streak, Problems Solved, and Institute Rank. |
+| 🥇 **Tier System** | Automatically classifies every player into **Bronze**, **Silver**, **Gold**, or **Icon** based on overall consistency and performance. |
+| ⚔️ **Position Detection** | Determines your optimal football position (ST, CAM, CB, CDM, LW, RW, LB, RB, etc.) from your coding stat distribution. |
+| 📊 **Six FIFA Attributes** | Generates PAC, SHO, PAS, DRI, DEF and PHY using real GeeksforGeeks profile statistics. |
+| 🖼️ **Downloadable** | Export your player card as a high-quality PNG and share it anywhere. |
 
 <br/>
 
@@ -69,7 +65,9 @@ Every card walks out with a unique Tier:
 
 ## 🚀 &nbsp;Run it locally
 
-You can run GFGFUT locally in minutes. The project uses a custom Node-based scraping chain to fetch GeeksforGeeks data and caches it in a Supabase PostgreSQL database via Prisma to prevent rate-limiting.
+You can run GeekFut locally in minutes. The project uses a custom Node-based scraping chain to fetch GeeksforGeeks data and caches it in a Supabase PostgreSQL database via Prisma to prevent rate-limiting.
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/anuj-pisal/GeekFut.git
@@ -77,18 +75,24 @@ cd GeekFut
 npm install
 ```
 
-Set up your `.env` file with your Supabase PostgreSQL connection string and an optional rate limit:
+Create a **`.env`** file in the project root:
 
-```bash
+```env
 # .env
 DATABASE_URL=postgresql://postgres.xxx:password@aws.supabase.com:5432/postgres?pgbouncer=true
 RATE_LIMIT_PER_MINUTE=20
 ```
 
-Fire up the development server:
+Start the development server:
 
 ```bash
-npm run dev            # http://localhost:3000
+npm run dev
+```
+
+Visit:
+
+```text
+http://localhost:3000
 ```
 
 <br/>
@@ -101,7 +105,7 @@ npm run dev            # http://localhost:3000
 
 <div align="center">
 
-**built by [@anuj-pisal](https://github.com/anuj-pisal)** 
+**built by [@anuj-pisal](https://github.com/anuj-pisal)**
 
 <img src="https://capsule-render.vercel.app/api?type=waving&height=90&color=0:00FF66,100:008F39&section=footer" alt="" width="100%">
 
