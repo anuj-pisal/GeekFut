@@ -9,30 +9,29 @@ interface Props {
   };
 }
 
-export function PlayerStatsPanel({ raw }: Props) {
-  
-  // A helper to render a metric row with a horizontal bar
-  const MetricRow = ({ label, value, subtext, max }: { label: string, value: number, subtext: string, max: number }) => {
-    const percentage = Math.min(100, Math.max(0, (value / max) * 100));
-    return (
-      <div className="py-3 border-b border-white/5 group hover:bg-white/[0.02] transition-colors -mx-4 px-4 rounded-lg">
-        <div className="flex justify-between items-end mb-2">
-          <span className="text-gray-400 text-sm">{label}</span>
-          <div className="flex items-baseline gap-2">
-            <span className="text-gray-500 text-xs">{subtext}</span>
-            <span className="text-white font-display font-bold text-lg">{value.toLocaleString()}</span>
-          </div>
-        </div>
-        <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-[#eaddb9] rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_#eaddb9]" 
-            style={{ width: `${percentage}%` }}
-          />
+// A helper to render a metric row with a horizontal bar
+const MetricRow = ({ label, value, subtext, max }: { label: string, value: number, subtext: string, max: number }) => {
+  const percentage = Math.min(100, Math.max(0, (value / max) * 100));
+  return (
+    <div className="py-3 border-b border-white/5 group hover:bg-white/[0.02] transition-colors -mx-4 px-4 rounded-lg">
+      <div className="flex justify-between items-end mb-2">
+        <span className="text-gray-400 text-sm">{label}</span>
+        <div className="flex items-baseline gap-2">
+          <span className="text-gray-500 text-xs">{subtext}</span>
+          <span className="text-white font-display font-bold text-lg">{value.toLocaleString()}</span>
         </div>
       </div>
-    );
-  };
+      <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+        <div 
+          className="h-full bg-[#eaddb9] rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_#eaddb9]" 
+          style={{ width: `${percentage}%` }}
+        />
+      </div>
+    </div>
+  );
+};
 
+export function PlayerStatsPanel({ raw }: Props) {
   return (
     <div className="flex flex-col gap-8 w-full max-w-sm font-body animate-fade-in-up">
       <div>

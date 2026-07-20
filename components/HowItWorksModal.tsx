@@ -44,16 +44,16 @@ export function HowItWorksModal({ isOpen, onClose }: Props) {
         </button>
 
         <div className="p-8 md:p-10 text-left text-gray-300 font-body">
-          <p className="text-gfg-green text-xs font-bold tracking-widest uppercase mb-2 font-display">The Scout's Eye</p>
+          <p className="text-gfg-green text-xs font-bold tracking-widest uppercase mb-2 font-display">The Scout&apos;s Eye</p>
           <h2 className="text-4xl md:text-5xl font-display font-black text-white uppercase leading-none mb-6 tracking-tight">
-            We don't rate you.<br />
+            We don&apos;t rate you.<br />
             We read you<span className="text-gfg-green">.</span>
           </h2>
           
           <p className="text-[15px] leading-relaxed mb-10 text-gray-400">
             Six signals off your live GeeksforGeeks profile, weighed against each other to find your shape. 
             That shape is your card — so two solvers with the same numbers still walk out different. 
-            Here's how to read yours.
+            Here&apos;s how to read yours.
           </p>
 
           <div className="space-y-8">
@@ -62,10 +62,10 @@ export function HowItWorksModal({ isOpen, onClose }: Props) {
                 <div className="h-[2px] w-6 bg-gfg-green"></div>
                 <h3 className="text-gfg-green text-xs font-bold tracking-widest uppercase font-display">Measured against you</h3>
               </div>
-              <h4 className="text-xl font-black text-white uppercase font-display mb-2 tracking-tight">Your own curve, not the world's.</h4>
+              <h4 className="text-xl font-black text-white uppercase font-display mb-2 tracking-tight">Your own curve, not the world&apos;s.</h4>
               <p className="text-[15px] leading-relaxed text-gray-400">
                 Each stat is weighed against the rest of your profile, so a high one marks where you stand out 
-                and a low one where you don't. That's why your weakest area can read lower than the raw number 
+                and a low one where you don&apos;t. That&apos;s why your weakest area can read lower than the raw number 
                 suggests — the card grades you on you.
               </p>
             </div>
@@ -75,7 +75,7 @@ export function HowItWorksModal({ isOpen, onClose }: Props) {
                 <div className="h-[2px] w-6 bg-gfg-green"></div>
                 <h3 className="text-gfg-green text-xs font-bold tracking-widest uppercase font-display">Every card has a shape</h3>
               </div>
-              <h4 className="text-xl font-black text-white uppercase font-display mb-2 tracking-tight">Nobody's elite at everything.</h4>
+              <h4 className="text-xl font-black text-white uppercase font-display mb-2 tracking-tight">Nobody&apos;s elite at everything.</h4>
               <p className="text-[15px] leading-relaxed text-gray-400">
                 Your strongest signals get pushed up and your weakest pulled down, so the card leans instead 
                 of sitting flat. That lean is what decides your position and archetype — read off your stats, never picked.

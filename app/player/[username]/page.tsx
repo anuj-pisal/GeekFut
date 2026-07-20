@@ -10,6 +10,7 @@ import { PlayerStatsPanel } from '@/components/dashboard/PlayerStatsPanel';
 import { PlayerDistributionGraph } from '@/components/dashboard/PlayerDistributionGraph';
 import { DownloadButton } from '@/components/DownloadButton';
 import { ShareButton } from '@/components/ShareButton';
+import { DuelButton } from '@/components/duel/DuelButton';
 import prisma from '@/lib/db';
 
 const CACHE_TTL_HOURS = 12;
@@ -158,20 +159,31 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
       if (error.message === 'profile_not_found') {
         return (
           <main className="flex-1 flex flex-col items-center justify-center p-6 min-h-[calc(100vh-80px)] text-center">
+            <div className="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mb-6">
+              <span className="text-4xl">🔍</span>
+            </div>
             <h1 className="text-4xl font-display font-bold text-white mb-4">Player Not Found</h1>
-            <p className="text-gray-400 mb-8 font-body">We couldn't find a GeeksforGeeks profile for @{username}.</p>
-            <Link href="/" className="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full font-body text-white transition-colors">
-              Go Back
+            <p className="text-gray-400 mb-8 font-body max-w-md mx-auto text-lg">
+              We couldn&apos;t find a GeeksforGeeks profile for <span className="text-gfg-green font-semibold">@{username}</span>. 
+              Please check the username and try again.
+            </p>
+            <Link href="/" className="px-8 py-3 bg-gfg-green hover:bg-emerald-500 rounded-full font-body text-[#0a0f0d] font-bold transition-all shadow-[0_0_15px_rgba(46,204,113,0.3)] hover:shadow-[0_0_25px_rgba(46,204,113,0.5)]">
+              Try Another Username
             </Link>
           </main>
         );
       }
       return (
         <main className="flex-1 flex flex-col items-center justify-center p-6 min-h-[calc(100vh-80px)] text-center">
+          <div className="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center mb-6">
+             <span className="text-4xl">⚠️</span>
+          </div>
           <h1 className="text-4xl font-display font-bold text-white mb-4">Scouting Failed</h1>
-          <p className="text-gray-400 mb-8 font-body">Upstream providers failed to fetch the stats for @{username}.</p>
-          <Link href="/" className="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full font-body text-white transition-colors">
-            Go Back
+          <p className="text-gray-400 mb-8 font-body max-w-md mx-auto text-lg">
+            We couldn&apos;t fetch stats for <span className="text-gfg-green font-semibold">@{username}</span>. This usually happens if the username is incorrect, or if GeeksforGeeks is temporarily unavailable.
+          </p>
+          <Link href="/" className="px-8 py-3 bg-white/10 hover:bg-white/20 rounded-full font-body text-white font-semibold transition-all">
+            Go Back and Try Again
           </Link>
         </main>
       );
@@ -235,6 +247,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
                 profilePicture={profileData.profilePicture}
                 codingScore={profileData.raw.codingScore}
               />
+              <DuelButton currentUser={profileData.username} />
             </div>
           </div>
 

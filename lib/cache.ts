@@ -3,7 +3,7 @@ interface CacheEntry<T> {
   expiry: number;
 }
 
-const cache = new Map<string, CacheEntry<any>>();
+const cache = new Map<string, CacheEntry<unknown>>();
 
 export function getCache<T>(key: string): T | null {
   const entry = cache.get(key);

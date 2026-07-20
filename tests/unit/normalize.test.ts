@@ -11,9 +11,10 @@ describe('normalizeProfile', () => {
       profilePicture: null,
       codingScore: NaN,
       totalProblemsSolved: 10,
+      instituteRank: null,
       currentStreak: NaN,
       maxStreak: 100,
-      instituteRank: null,
+      language: 'C++',
     };
     
     const normalized = normalizeProfile(profile);

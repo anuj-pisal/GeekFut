@@ -109,7 +109,7 @@ export function DownloadButton({ model, displayName, institution, profilePicture
             <PlayerCard 
                model={model} 
                displayName={displayName!} 
-               institution={institution}
+               institution={institution ?? null}
                profilePicture={profilePicture!}
                codingScore={codingScore!}
             />

@@ -4,7 +4,7 @@ import { gfgStatsTashifProvider } from '../../lib/providers/tashif';
 
 describe('providerChain', () => {
   test('returns profile from first successful provider', async () => {
-    const mockProfile = { username: 'test' } as any;
+    const mockProfile = { username: 'test' } as import('../../lib/providers/types').NormalizedGfgProfile;
     vi.spyOn(gfgStatsTashifProvider, 'fetchProfile').mockResolvedValue(mockProfile);
     
     const result = await fetchProfileWithFallback('test');

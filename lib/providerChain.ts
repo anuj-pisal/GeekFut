@@ -20,7 +20,8 @@ export async function fetchProfileWithFallback(
     try {
       const profile = await provider.fetchProfile(username);
       return { profile, providerName: provider.name };
-    } catch (error: any) {
+    } catch (e: unknown) {
+      const error = e as Error;
       if (error.message !== 'profile_not_found') {
         allNotFound = false;
       }

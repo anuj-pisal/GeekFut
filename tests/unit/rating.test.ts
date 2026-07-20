@@ -14,6 +14,7 @@ describe('rating heuristic', () => {
       currentStreak: 100,
       maxStreak: 200,
       instituteRank: null,
+      language: 'C++',
     };
     
     const card = computeCardModel(profile);
@@ -33,6 +34,7 @@ describe('rating heuristic', () => {
       currentStreak: 0,
       maxStreak: 0,
       instituteRank: null,
+      language: 'C++',
     };
     
     const card = computeCardModel(profile);

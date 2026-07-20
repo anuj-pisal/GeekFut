@@ -1,19 +1,24 @@
 import prisma from '@/lib/db';
 
 export async function CardsScoutedCount() {
+  let count = 0;
   try {
-    const count = await prisma.player.count();
-    return <span className="text-white font-bold">{count}</span>;
-  } catch (e) {
+    count = await prisma.player.count();
+  } catch {
     return <span className="text-white font-bold">0</span>;
   }
+  return <span className="text-white font-bold">{count}</span>;
 }
 
 export async function ActivityGraph() {
+  let count = 0;
   try {
-    const count = await prisma.player.count();
+    count = await prisma.player.count();
+  } catch {
+    return null;
+  }
     
-    return (
+  return (
       <div className="flex flex-col items-start opacity-80 hover:opacity-100 transition-all duration-500 group cursor-default">
         {/* Sleek Neon Sparkline SVG */}
         <div className="relative w-52 h-10 mb-2">
@@ -56,7 +61,4 @@ export async function ActivityGraph() {
         </div>
       </div>
     );
-  } catch (e) {
-    return null;
-  }
 }
