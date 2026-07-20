@@ -1,0 +1,32 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Player {
+  username            String   @id
+  displayName         String
+  profilePicture      String?
+  institution         String?
+  language            String
+  codingScore         Int
+  totalProblemsSolved Int
+  currentStreak       Int
+  maxStreak           Int
+  instituteRank       Int?
+  ovr                 Int
+  tier                String
+  position            String
+  pace                Int
+  shooting            Int
+  passing             Int
+  dribbling           Int
+  defending           Int
+  physical            Int
+  scoutedAt           DateTime @default(now()) @updatedAt
+  viewCount           Int      @default(1)
+}

@@ -44,5 +44,22 @@ export function computeCardModel(profile: NormalizedGfgProfile): CardModel {
     percent: profile.maxStreak > 0 ? Math.round((profile.currentStreak / profile.maxStreak) * 100) : 0,
   };
 
-  return { ovr, tier, attributes, streak };
+  const stScore = shooting * 0.6 + physical * 0.2 + pace * 0.2;
+  const wingScore = pace * 0.6 + dribbling * 0.3 + passing * 0.1;
+  const camScore = passing * 0.5 + dribbling * 0.4 + shooting * 0.1;
+  const cdmScore = defending * 0.5 + physical * 0.4 + passing * 0.1;
+  const cbScore = defending * 0.6 + physical * 0.4;
+  const fbScore = pace * 0.4 + defending * 0.4 + physical * 0.2;
+  
+  const maxScore = Math.max(stScore, wingScore, camScore, cdmScore, cbScore, fbScore);
+  
+  let position = 'CM';
+  if (maxScore === stScore) position = 'ST';
+  else if (maxScore === wingScore) position = pace > 88 ? 'LW' : 'RW';
+  else if (maxScore === camScore) position = 'CAM';
+  else if (maxScore === cdmScore) position = 'CDM';
+  else if (maxScore === cbScore) position = 'CB';
+  else if (maxScore === fbScore) position = pace > 85 ? 'LB' : 'RB';
+
+  return { ovr, tier, position, attributes, streak };
 }

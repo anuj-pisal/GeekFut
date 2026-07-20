@@ -9,9 +9,10 @@ import { PlayerAttributesPanel } from '@/components/dashboard/PlayerAttributesPa
 import { PlayerStatsPanel } from '@/components/dashboard/PlayerStatsPanel';
 import { DownloadButton } from '@/components/DownloadButton';
 import { ShareButton } from '@/components/ShareButton';
-import { getCache, setCache } from '@/lib/cache';
+import prisma from '@/lib/db';
 
-const CACHE_TTL_SECONDS = 600; // 10 mins
+const CACHE_TTL_HOURS = 12;
+
 
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> | { username: string } }) {
   const resolvedParams = await Promise.resolve(params);
@@ -30,13 +31,55 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
   }
 
   let profileData;
-  const cacheKey = `profile:v2:${username.toLowerCase()}`;
-  const cachedData = getCache<any>(cacheKey);
+  const usernameLower = username.toLowerCase();
+  
+  try {
+    const dbPlayer = await prisma.player.findUnique({
+      where: { username: usernameLower }
+    });
 
-  if (cachedData) {
-    profileData = cachedData;
-  } else {
-    try {
+    const isStale = dbPlayer ? (new Date().getTime() - dbPlayer.scoutedAt.getTime()) > (CACHE_TTL_HOURS * 60 * 60 * 1000) : true;
+
+    if (dbPlayer && !isStale) {
+      // Background view count increment
+      prisma.player.update({
+        where: { username: usernameLower },
+        data: { viewCount: { increment: 1 } }
+      }).catch(console.error);
+
+      profileData = {
+        username: dbPlayer.username,
+        displayName: dbPlayer.displayName,
+        institution: dbPlayer.institution,
+        language: dbPlayer.language,
+        profilePicture: dbPlayer.profilePicture,
+        raw: {
+          codingScore: dbPlayer.codingScore,
+          totalProblemsSolved: dbPlayer.totalProblemsSolved,
+          currentStreak: dbPlayer.currentStreak,
+          maxStreak: dbPlayer.maxStreak,
+          instituteRank: dbPlayer.instituteRank,
+        },
+        card: {
+          ovr: dbPlayer.ovr,
+          tier: dbPlayer.tier as any,
+          position: dbPlayer.position,
+          attributes: {
+            pace: dbPlayer.pace,
+            shooting: dbPlayer.shooting,
+            passing: dbPlayer.passing,
+            dribbling: dbPlayer.dribbling,
+            defending: dbPlayer.defending,
+            physical: dbPlayer.physical,
+          },
+          streak: {
+            current: dbPlayer.currentStreak,
+            max: dbPlayer.maxStreak,
+            percent: dbPlayer.maxStreak > 0 ? Math.round((dbPlayer.currentStreak / dbPlayer.maxStreak) * 100) : 0,
+          }
+        }
+      };
+    } else {
       const { profile, providerName } = await fetchProfileWithFallback(username);
       const normalizedProfile = normalizeProfile(profile);
       const cardModel = computeCardModel(normalizedProfile);
@@ -57,7 +100,54 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
         card: cardModel,
       };
 
-      setCache(cacheKey, profileData, CACHE_TTL_SECONDS);
+      // Upsert to Prisma
+      await prisma.player.upsert({
+        where: { username: normalizedProfile.username.toLowerCase() },
+        update: {
+          displayName: normalizedProfile.displayName,
+          profilePicture: normalizedProfile.profilePicture,
+          institution: normalizedProfile.institution,
+          language: normalizedProfile.language || 'Unknown',
+          codingScore: normalizedProfile.codingScore,
+          totalProblemsSolved: normalizedProfile.totalProblemsSolved,
+          currentStreak: normalizedProfile.currentStreak,
+          maxStreak: normalizedProfile.maxStreak,
+          instituteRank: normalizedProfile.instituteRank,
+          ovr: cardModel.ovr,
+          tier: cardModel.tier,
+          position: cardModel.position,
+          pace: cardModel.attributes.pace,
+          shooting: cardModel.attributes.shooting,
+          passing: cardModel.attributes.passing,
+          dribbling: cardModel.attributes.dribbling,
+          defending: cardModel.attributes.defending,
+          physical: cardModel.attributes.physical,
+          scoutedAt: new Date(),
+          viewCount: dbPlayer ? { increment: 1 } : 1,
+        },
+        create: {
+          username: normalizedProfile.username.toLowerCase(),
+          displayName: normalizedProfile.displayName,
+          profilePicture: normalizedProfile.profilePicture,
+          institution: normalizedProfile.institution,
+          language: normalizedProfile.language || 'Unknown',
+          codingScore: normalizedProfile.codingScore,
+          totalProblemsSolved: normalizedProfile.totalProblemsSolved,
+          currentStreak: normalizedProfile.currentStreak,
+          maxStreak: normalizedProfile.maxStreak,
+          instituteRank: normalizedProfile.instituteRank,
+          ovr: cardModel.ovr,
+          tier: cardModel.tier,
+          position: cardModel.position,
+          pace: cardModel.attributes.pace,
+          shooting: cardModel.attributes.shooting,
+          passing: cardModel.attributes.passing,
+          dribbling: cardModel.attributes.dribbling,
+          defending: cardModel.attributes.defending,
+          physical: cardModel.attributes.physical,
+        }
+      }).catch(console.error);
+    }
     } catch (error: any) {
       if (error.message === 'profile_not_found') {
         return (
@@ -80,25 +170,9 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
         </main>
       );
     }
-  }
 
-  // Determine Position for the header based on attributes
-  const { pace, shooting, passing, dribbling, defending, physical } = profileData.card.attributes;
-  const stScore = shooting * 0.6 + physical * 0.2 + pace * 0.2;
-  const wingScore = pace * 0.6 + dribbling * 0.3 + passing * 0.1;
-  const camScore = passing * 0.5 + dribbling * 0.4 + shooting * 0.1;
-  const cdmScore = defending * 0.5 + physical * 0.4 + passing * 0.1;
-  const cbScore = defending * 0.6 + physical * 0.4;
-  const fbScore = pace * 0.4 + defending * 0.4 + physical * 0.2;
-  
-  const maxScore = Math.max(stScore, wingScore, camScore, cdmScore, cbScore, fbScore);
-  let position = 'CM';
-  if (maxScore === stScore) position = 'ST';
-  else if (maxScore === wingScore) position = pace > 88 ? 'LW' : 'RW';
-  else if (maxScore === camScore) position = 'CAM';
-  else if (maxScore === cdmScore) position = 'CDM';
-  else if (maxScore === cbScore) position = 'CB';
-  else if (maxScore === fbScore) position = pace > 85 ? 'LB' : 'RB';
+  // Get Position for the header from the card model
+  const position = profileData.card.position;
 
   return (
     <main className="flex-1 flex flex-col items-center justify-start p-8 md:p-16 lg:px-24 lg:pt-24 lg:pb-4 relative min-h-[calc(100vh-80px)] overflow-x-hidden">
@@ -154,7 +228,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
 
           {/* Right Panel: Metrics */}
           <div className="flex justify-center lg:justify-start order-3 lg:order-3">
-            <PlayerStatsPanel raw={{ ...profileData.raw, institution: profileData.institution }} />
+            <PlayerStatsPanel raw={{ ...profileData.raw, institution: profileData.institution, instituteRank: profileData.raw.instituteRank ?? undefined }} />
           </div>
           
         </div>

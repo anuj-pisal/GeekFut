@@ -1,6 +1,7 @@
 import { UsernameForm } from '@/components/UsernameForm';
 import { HeroCards } from '@/components/HeroCards';
 import { Suspense } from 'react';
+import { CardsScoutedCount, ActivityGraph } from '@/components/landing/LandingStats';
 
 export default function Home() {
   return (
@@ -49,6 +50,17 @@ export default function Home() {
 
           <div className="w-full max-w-xl relative">
             <UsernameForm />
+            
+            <div className="mt-5 flex flex-col gap-2 pl-2 lg:pl-4">
+              <div className="flex items-center gap-3 text-sm text-gray-400 font-body">
+                <span className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-[#00FF66] animate-pulse shadow-[0_0_8px_#00FF66]"></div> 
+                  <Suspense fallback={<span className="w-3 h-3 rounded-full border-2 border-[#00FF66] border-t-transparent animate-spin inline-block"></span>}>
+                    <CardsScoutedCount />
+                  </Suspense> cards rated
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -67,7 +79,12 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="absolute bottom-6 text-center text-sm font-body text-gray-500 w-full animate-fade-in-up animate-delay-300 z-10">
+      <footer className="absolute bottom-6 text-center text-sm font-body text-gray-500 w-full animate-fade-in-up animate-delay-300 z-10 flex flex-col items-center">
+        <div className="mb-4">
+          <Suspense fallback={null}>
+            <ActivityGraph />
+          </Suspense>
+        </div>
         <p className="flex items-center justify-center space-x-2">
           <span>Built by</span>
           <a href="https://github.com/anuj-pisal" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors flex items-center space-x-1 font-bold group">

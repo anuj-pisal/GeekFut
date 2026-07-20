@@ -1,4 +1,0 @@
-Option 2: Most Used Programming Language Logo (Recommended)
-This is actually a brilliant idea for a coding-themed card! GeeksforGeeks profiles track which languages you use to solve problems (C++, Java, Python, etc.). I can update the scraper to look at your language stats, figure out which language you use the most, and then place a beautiful, high-resolution badge of that language (like the Python snake or the C++ shield) right below the Indian flag!
-
-Which of those two options sounds better to you? (Or we could even do a combination of both!) Let me know your thoughts and I'll write up the code for it!

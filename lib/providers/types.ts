@@ -29,6 +29,7 @@ export interface StreakStats {
 export interface CardModel {
   ovr: number;
   tier: 'bronze' | 'silver' | 'gold' | 'icon';
+  position: string;
   attributes: CardAttributes;
   streak: StreakStats;
 }

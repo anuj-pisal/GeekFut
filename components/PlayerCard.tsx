@@ -44,26 +44,7 @@ export function PlayerCard({ model, displayName, institution, profilePicture, co
   else if (tier === 'silver') { bg = '/cards/silver.png'; ink = '#1a1f22'; }
   else if (tier === 'bronze') { bg = '/cards/bronze.png'; ink = '#3b3117'; }
 
-  const getPos = () => {
-    const { pace, shooting, passing, dribbling, defending, physical } = attributes;
-    
-    const stScore = shooting * 0.6 + physical * 0.2 + pace * 0.2;
-    const wingScore = pace * 0.6 + dribbling * 0.3 + passing * 0.1;
-    const camScore = passing * 0.5 + dribbling * 0.4 + shooting * 0.1;
-    const cdmScore = defending * 0.5 + physical * 0.4 + passing * 0.1;
-    const cbScore = defending * 0.6 + physical * 0.4;
-    const fbScore = pace * 0.4 + defending * 0.4 + physical * 0.2;
-    
-    const maxScore = Math.max(stScore, wingScore, camScore, cdmScore, cbScore, fbScore);
-    
-    if (maxScore === stScore) return 'ST';
-    if (maxScore === wingScore) return pace > 88 ? 'LW' : 'RW';
-    if (maxScore === camScore) return 'CAM';
-    if (maxScore === cdmScore) return 'CDM';
-    if (maxScore === cbScore) return 'CB';
-    if (maxScore === fbScore) return pace > 85 ? 'LB' : 'RB';
-    return 'CM';
-  };
+
 
   const wrap: CSSProperties = {
     containerType: "inline-size",
@@ -118,7 +99,7 @@ export function PlayerCard({ model, displayName, institution, profilePicture, co
 
       {/* POS */}
       <div style={{ ...at(25, 24), transform: "translateX(-50%)", fontSize: "8cqw", fontWeight: 700, lineHeight: 1, letterSpacing: ".02em", color: ink }}>
-        {getPos()}
+        {model.position}
       </div>
 
       {/* Flag */}
