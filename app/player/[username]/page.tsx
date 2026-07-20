@@ -228,7 +228,13 @@ export default async function PlayerPage({ params }: { params: Promise<{ usernam
             
             <div className="w-full max-w-[320px] mt-8 flex flex-col animate-fade-in-up animate-delay-200">
               <ShareButton />
-              <DownloadButton />
+              <DownloadButton 
+                model={profileData.card} 
+                displayName={profileData.displayName} 
+                institution={profileData.institution}
+                profilePicture={profileData.profilePicture}
+                codingScore={profileData.raw.codingScore}
+              />
             </div>
           </div>
 
