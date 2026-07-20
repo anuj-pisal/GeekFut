@@ -1,102 +1,108 @@
 <div align="center">
-  <img src="public/newLogo.png" alt="GFGFUT Logo" width="200" />
-  
-  <h1>GFGFUT (GeeksforGeeks Ultimate Team)</h1>
-  <p><strong>Turn your GeeksforGeeks profile into an EA Sports FC / Ultimate Team style player card!</strong></p>
 
-  <p>
-    <a href="https://geek-fut-theta.vercel.app/"><img src="https://img.shields.io/badge/Live_Demo-geek--fut.vercel.app-10b981?style=for-the-badge&logo=vercel" alt="Live Demo" /></a>
-  </p>
+<img src="public/newLogo.png" width="360" alt="GFGFUT">
 
-  <p>
-    <img src="https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js" alt="Next.js" />
-    <img src="https://img.shields.io/badge/Supabase-Database-3ecf8e?style=flat-square&logo=supabase" alt="Supabase" />
-    <img src="https://img.shields.io/badge/Prisma-ORM-2d3748?style=flat-square&logo=prisma" alt="Prisma" />
-  </p>
+# GFGFUT
 
-  <p>
-    <a href="#what-it-does">What it does</a> •
-    <a href="#how-the-ratings-work">How Ratings Work</a> •
-    <a href="#tech-stack">Tech Stack</a> •
-    <a href="#local-development">Local Development</a>
-  </p>
+**your GeeksforGeeks profile, rated out of 99** ⚽
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=2600&pause=800&color=00FF66&center=true&vCenter=true&width=750&height=42&lines=Turn+any+GeeksforGeeks+profile+into+an+Ultimate+Team+card;Scored+live+from+coding+scores%2C+streaks+%26+institute+ranks;Beautiful%2C+interactive%2C+and+downloadable" alt="Turn any GeeksforGeeks profile into a player card, scored live">
+
+<br/>
+
+<a href="https://geek-fut-theta.vercel.app/"><img src="https://img.shields.io/badge/Live_Demo-geek--fut.vercel.app-10b981?style=for-the-badge&logo=vercel" alt="Live Demo" /></a>
+
+<br/>
+
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-Database-3ecf8e?style=flat-square&logo=supabase&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)
+
 </div>
 
----
+<br/>
 
-> **Disclaimer:** GFGFUT is a fan-made, unofficial open-source project. It is not affiliated with GeeksforGeeks, EA Sports, or FIFA. Card ratings are a fun, heuristic calculation derived from public profile stats and do not represent an official skill assessment.
+> **Disclaimer:** GFGFUT is a fan-made, unofficial open-source project. It is not affiliated with GeeksforGeeks, EA Sports, or FIFA. Ratings are a heuristic calculation derived from public profile stats.
 
-## 🚀 What it does
+## ⚽ &nbsp;What it does
 
-Enter any valid GeeksforGeeks username into GFGFUT, and the app will instantly scrape and fetch that user's public coding statistics. The app maps these programming metrics into a FIFA-style rating system, assigning:
-- An **Overall Rating (OVR)** out of 99.
-- Individual attributes: **Pace**, **Shooting**, **Passing**, **Dribbling**, **Defending**, and **Physical**.
-- An **Ultimate Team Card Tier** (Bronze, Silver, Gold, or Icon).
-- A specialized **Position** on the pitch (ST, CAM, CB, etc.) based on your coding playstyle.
+Drop in any valid GeeksforGeeks username and GFGFUT scouts the public profile, reads six real coding signals, and prints a **FIFA-Ultimate-Team-style player card** rated out of 99. Position, tier, stats and all. No manual input, no self-reporting. Just pure coding stats mapped to the pitch.
 
-The final result is a beautiful, downloadable, 3D-interactive player card featuring the user's avatar, institution, and statistics.
+| | |
+|:--|:--|
+| 🃏 **Player card** | Your GeeksforGeeks profile transforms into a sleek, rated-out-of-99 3D interactive card. |
+| 📈 **Live scouting** | Stats are fetched live from public GFG data — including your coding score, streaks, problems solved, and institute rank. |
+| 🥇 **Tiers** | Bronze → Silver → Gold → Icon. Your tier is dictated by your overall consistency and mastery. |
+| ⚔️ **Positions** | Whether you're a Striker, Winger, Playmaker, or Defender, the algorithm automatically determines your optimal position based on your stat distribution. |
+| 🖼️ **Downloadable** | Export your player card as a high-quality PNG to share with your friends or your college crew. |
+
+<br/>
+
+## ⚙️ &nbsp;How the scouting works
+
+Your overall rating isn't just an average—it is a carefully weighted formula depending on your playstyle. We extract six signals from your GeeksforGeeks data and map them directly into classic FIFA attributes:
+
+| Stat | Name | Scouted from |
+|:--:|:--|:--|
+| **PAC** | Pace | Current & Max Streak (Built for the consistent sprinters) |
+| **SHO** | Shooting | Raw Coding Score (For the big volume scorers) |
+| **PAS** | Passing | Total Problems Solved (Delivering high-volume solutions) |
+| **DRI** | Dribbling | Total Problems Solved (Navigating through complex logic) |
+| **DEF** | Defending | Institute Rank (The anchor of your college leaderboards) |
+| **PHY** | Physical | A blend of Coding Score + Problems Solved |
+
+Your **position** is read directly from your stat shape. A massive Institute Rank will breed an elite Center Back (CB). Huge raw Coding Scores produce Strikers (ST). The ultimate balanced profile builds modern Fullbacks and Central Midfielders.
+
+Every card walks out with a unique Tier:
 
 <div align="center">
-  <img src="public/cards/gold.png" alt="Card Preview" width="300" />
+
+![Bronze](https://img.shields.io/badge/BRONZE-%E2%89%A464-CD7F32?style=flat-square&labelColor=2A1A0C)
+![Silver](https://img.shields.io/badge/SILVER-65--74-AAB2BD?style=flat-square&labelColor=262B33)
+![Gold](https://img.shields.io/badge/GOLD-75--89-E6B422?style=flat-square&labelColor=3A2806)
+![Icon](https://img.shields.io/badge/ICON-90%2B-F3D688?style=flat-square&labelColor=2A1A45)
+
 </div>
 
-## ⚽ How the Ratings Work
+<br/>
 
-We use a carefully balanced mathematical algorithm to convert code into football attributes:
+## 🚀 &nbsp;Run it locally
 
-- **Pace (PAC):** Built for the sprinters. Driven heavily by your **Current & Max Streaks**.
-- **Shooting (SHO):** For the big scorers. Scales purely on your raw **Coding Score**.
-- **Passing (PAS) & Dribbling (DRI):** For the playmakers. Scales on the total volume of **Problems Solved**.
-- **Defending (DEF):** For the anchors. Derived via a logarithmic scale from your **Institution Rank**. The closer you are to #1 in your college, the better your defending.
-- **Physical (PHY):** An all-around endurance stat blending both coding score and problems solved.
-
-**Positions** are assigned based on a weighted formula. If your Shooting dominates, you'll be a Striker (ST). If you have elite Streaks, you'll be placed on the Wing (LW/RW). Massive Institution Ranks breed elite Center Backs (CB).
-
-## 🛠 Tech Stack
-
-Built for speed, beautiful aesthetics, and seamless 3D interactions.
-
-- **Framework:** Next.js 14 (App Router)
-- **Styling:** Tailwind CSS & Custom Vanilla CSS (for complex 3D perspective/glassmorphism)
-- **Database:** Supabase (PostgreSQL) + Prisma ORM (for caching scouted profiles)
-- **Data Fetching:** Custom Node-based HTML scraper chain with intelligent fallbacks
-- **Deployment:** Vercel
-
-## 📚 Project Documentation
-
-If you're a developer or agent looking to contribute, please refer to the following specs (read `AGENTS.md` first):
-
-| Document | Purpose |
-|---|---|
-| `PRD.md` | Scope, Goals/Non-goals, Product requirements |
-| `ARCHITECTURE.md` | System design, Provider fallback chain logic |
-| `API_SPEC.md` | Internal API contracts and normalized data shapes |
-| `DESIGN_SYSTEM.md` | Design tokens, animations, and component contracts |
-| `TASKS.md` | The ordered build plan and current phase status |
-
-## 💻 Local Development
-
-Clone the repo and install dependencies:
+You can run GFGFUT locally in minutes. The project uses a custom Node-based scraping chain to fetch GeeksforGeeks data and caches it in a Supabase PostgreSQL database via Prisma to prevent rate-limiting.
 
 ```bash
-git clone https://github.com/yourusername/gfgfut.git
-cd gfgfut
+git clone https://github.com/anuj-pisal/GeekFut.git
+cd GeekFut
 npm install
 ```
 
-Set up your `.env` file with your database URL, then run the development server:
+Set up your `.env` file with your Supabase PostgreSQL connection string and an optional rate limit:
 
 ```bash
-npm run dev
+# .env
+DATABASE_URL=postgresql://postgres.xxx:password@aws.supabase.com:5432/postgres?pgbouncer=true
+RATE_LIMIT_PER_MINUTE=20
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the application.
-
-## 📜 Scripts
+Fire up the development server:
 
 ```bash
-npm run dev         # local dev server
-npm run build       # production build
-npm run lint        # run ESLint
-npm run typecheck   # run TypeScript compiler check
+npm run dev            # http://localhost:3000
 ```
+
+<br/>
+
+## 🧱 &nbsp;Built with
+
+**Next.js 14** (App Router) · **TypeScript** · **Tailwind CSS 4** · **Supabase (PostgreSQL)** · **Prisma ORM** · Custom Vanilla CSS 3D Glassmorphism
+
+<br/>
+
+<div align="center">
+
+**built by [@anuj-pisal](https://github.com/anuj-pisal)** 
+
+<img src="https://capsule-render.vercel.app/api?type=waving&height=90&color=0:00FF66,100:008F39&section=footer" alt="" width="100%">
+
+</div>
