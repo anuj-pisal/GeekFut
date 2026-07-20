@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #eef1e8;
+  --paper-dim: #dde2d4;
+  --ink: #0b1410;
+  --line: #c7cdbc;
+  --gfg-green: #2f8d46;
+  --gfg-green-dark: #18572c;
+  
+  --tier-bronze-1: #a9713f;
+  --tier-bronze-2: #7a4a24;
+  --tier-bronze-3: #5a3417;
+
+  --tier-silver-1: #e7ebee;
+  --tier-silver-2: #a9b3ba;
+  --tier-silver-3: #767f85;
+
+  --tier-gold-1: #f7dd8f;
+  --tier-gold-2: #d9a53a;
+  --tier-gold-3: #a5721b;
+
+  --tier-icon-1: #173a24;
+  --tier-icon-2: #0c1f14;
+  --tier-icon-3: #04120a;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-ink: var(--ink);
+  --color-line: var(--line);
+  --color-gfg-green: var(--gfg-green);
+  --color-gfg-green-dark: var(--gfg-green-dark);
+  
+  --font-display: var(--font-oswald), sans-serif;
+  --font-body: var(--font-archivo), sans-serif;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+/* Grid paper pattern */
+.bg-grid-paper {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+}
+
+/* Custom Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
