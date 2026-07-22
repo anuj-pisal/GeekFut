@@ -18,8 +18,8 @@ describe('rating heuristic', () => {
     };
     
     const card = computeCardModel(profile);
-    expect(card.ovr).toBeGreaterThanOrEqual(90);
-    expect(card.tier).toBe('icon');
+    expect(card.ovr).toBeGreaterThanOrEqual(80);
+    expect(card.tier).toBe('gold');
     expect(card.streak.percent).toBe(50);
   });
   

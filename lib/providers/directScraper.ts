@@ -32,10 +32,13 @@ export const gfgStatsDirectScraperProvider: GfgProvider = {
     
     // Fallback if userData structure changes
     if (!profilePicture) {
-        const picMatch = html.match(/(?:\\")?profile_picture(?:\\")?\s*:\s*(?:\\")?([^"\\]+)(?:\\")?/i) || 
-                         html.match(/(?:\\")?profile_pic(?:\\")?\s*:\s*(?:\\")?([^"\\]+)(?:\\")?/i) ||
-                         html.match(/(?:\\")?profile_image_url(?:\\")?\s*:\s*(?:\\")?([^"\\]+)(?:\\")?/i);
-        profilePicture = picMatch ? picMatch[1] : null;
+        const picMatches = html.match(/(?:\\")?(?:profile_picture|profile_pic|profile_image_url)(?:\\")?\s*:\s*(?:\\")?([^"\\]+)(?:\\")?/ig);
+        if (picMatches && picMatches.length > 0) {
+            // Extract the actual URL from the last match
+            const lastMatch = picMatches[picMatches.length - 1];
+            const extract = lastMatch.match(/(?:\\")?(?:profile_picture|profile_pic|profile_image_url)(?:\\")?\s*:\s*(?:\\")?([^"\\]+)(?:\\")?/i);
+            profilePicture = extract ? extract[1] : null;
+        }
     }
 
     if (profilePicture === 'null' || profilePicture === 'undefined') profilePicture = null;
